@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Understanding JavaScript's Capture</title>
+  <title>Event Capture Bubbling and Once</title>
   <link rel="stylesheet" href="main.css">
 </head>
 
@@ -19,6 +19,24 @@
 
 <script>
 
+const divs = document.querySelectorAll('div');
+const button = document.querySelector('button')
+
+function logText(e) {
+  //console.log(this.classList.value);
+ // e.stopPropagation();
+}
+
+divs.forEach(div => div.addEventListener('click', logText, {
+  capture: false,
+  once: true
+}));
+
+button.addEventListener('click', () => {
+  console.log('Click');
+}, {
+  once: true
+});
 
 </script>
 </body>
